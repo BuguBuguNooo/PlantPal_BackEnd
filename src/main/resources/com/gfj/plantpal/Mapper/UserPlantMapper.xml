@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gfj.plantpal.Mapper.UserPlantMapper">
+
+    <insert id="InsertUserPlant">
+        INSERT INTO UserPlants
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="plantName != null">plant_name,</if>
+            <if test="optimalTempLow != null">optimal_temp_low,</if>
+            <if test="optimalTempHigh != null">optimal_temp_high,</if>
+            <if test="optimalHumidityLow != null">optimal_humidity_low,</if>
+            <if test="optimalHumidityHigh != null">optimal_humidity_high,</if>
+            <if test="optimalLightIntensity != null">optimal_light_intensity,</if>
+            <if test="optimalLightDuration != null">optimal_light_duration,</if>
+            <if test="optimalCo2Low != null">optimal_co2_low,</if>
+            <if test="optimalCo2High != null">optimal_co2_high,</if>
+            <if test="optimalPhLow != null">optimal_ph_low,</if>
+            <if test="optimalPhHigh != null">optimal_ph_high,</if>
+            <if test="optimalSoilMoistureLow != null">optimal_soil_moisture_low,</if>
+            <if test="optimalSoilMoistureHigh != null">optimal_soil_moisture_high,</if>
+            <if test="plantSqId != null">plant_sq_id</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="plantName != null">#{plantName},</if>
+            <if test="optimalTempLow != null">#{optimalTempLow},</if>
+            <if test="optimalTempHigh != null">#{optimalTempHigh},</if>
+            <if test="optimalHumidityLow != null">#{optimalHumidityLow},</if>
+            <if test="optimalHumidityHigh != null">#{optimalHumidityHigh},</if>
+            <if test="optimalLightIntensity != null">#{optimalLightIntensity},</if>
+            <if test="optimalLightDuration != null">#{optimalLightDuration},</if>
+            <if test="optimalCo2Low != null">#{optimalCo2Low},</if>
+            <if test="optimalCo2High != null">#{optimalCo2High},</if>
+            <if test="optimalPhLow != null">#{optimalPhLow},</if>
+            <if test="optimalPhHigh != null">#{optimalPhHigh},</if>
+            <if test="optimalSoilMoistureLow != null">#{optimalSoilMoistureLow},</if>
+            <if test="optimalSoilMoistureHigh != null">#{optimalSoilMoistureHigh},</if>
+            <if test="plantSqId != null">#{plantSqId}</if>
+        </trim>
+    </insert>
+
+    <delete id="DeleteUserPlant">
+        DELETE FROM UserPlants WHERE user_id = #{userId} AND plant_id = #{plantId}
+    </delete>
+
+    <select id="selectMaxSqNumByUserId" resultType="Integer">
+        SELECT MAX(plant_sq_id) FROM UserPlants WHERE user_id = #{userId}
+    </select>
+
+    <select id="SelectUserPlantList" resultType="com.gfj.plantpal.Pojo.UserPlant">
+        SELECT * from UserPlants WHERE user_id = #{userId}
+    </select>
+
+    <update id="UpdateUserPlant" >
+        update UserPlants
+        <set>
+            <if test="userPlant.plantName != null">plant_name = #{userPlant.plantName},</if>
+            <if test="userPlant.optimalTempLow != null">optimal_temp_low = #{userPlant.optimalTempLow},</if>
+            <if test="userPlant.optimalTempHigh != null">optimal_temp_high = #{userPlant.optimalTempHigh},</if>
+            <if test="userPlant.optimalHumidityLow != null">optimal_humidity_low = #{userPlant.optimalHumidityLow},</if>
+            <if test="userPlant.optimalHumidityHigh != null">optimal_humidity_high = #{userPlant.optimalHumidityHigh},</if>
+            <if test="userPlant.optimalLightIntensity != null">optimal_light_intensity = #{userPlant.optimalLightIntensity},</if>
+            <if test="userPlant.optimalLightDuration != null">optimal_light_duration = #{userPlant.optimalLightDuration},</if>
+            <if test="userPlant.optimalCo2Low != null">optimal_co2_low = #{userPlant.optimalCo2Low},</if>
+            <if test="userPlant.optimalCo2High != null">optimal_co2_high = #{userPlant.optimalCo2High},</if>
+            <if test="userPlant.optimalPhLow != null">optimal_ph_low = #{userPlant.optimalPhLow},</if>
+            <if test="userPlant.optimalPhHigh != null">optimal_ph_high = #{userPlant.optimalPhHigh},</if>
+            <if test="userPlant.optimalSoilMoistureLow != null">optimal_soil_moisture_low = #{userPlant.optimalSoilMoistureLow},</if>
+            <if test="userPlant.optimalSoilMoistureHigh != null">optimal_soil_moisture_high = #{userPlant.optimalSoilMoistureHigh},</if>
+        </set>
+        WHERE user_id = #{userId} AND plant_id = #{userPlant.plantId}
+    </update>
+</mapper>

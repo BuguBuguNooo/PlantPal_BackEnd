@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gfj.plantpal.Mapper.SensorTemHumDataMapper">
+    <insert id="batchInsert">
+        INSERT INTO TemHum_data (timestamp, Device, Sensor, Temperature, Humidity)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.timestamp}, #{item.device}, #{item.sensor}, #{item.temperature}, #{item.humidity})
+        </foreach>
+    </insert>
+<!--    在xml中正常符号中的<和>都需要用&lt;和&gt;代替-->
+    <select id="selectAVGTemRecentDay1" resultType="java.lang.Double">
+        SELECT ROUND(AVG(Temperature), 4)
+        FROM TemHum_data
+        WHERE Sensor = 'temHumSensor_1'
+        AND timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 1 DAY)
+        AND timestamp &lt; UNIX_TIMESTAMP(CURDATE());
+    </select>
+    <select id="selectAVGHumRecentDay1" resultType="java.lang.Double">
+        SELECT ROUND(AVG(Humidity), 4)
+        FROM TemHum_data
+        WHERE Sensor = 'temHumSensor_1'
+        AND timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 1 DAY)
+        AND timestamp &lt; UNIX_TIMESTAMP(CURDATE());
+    </select>
+
+    <select id="selectAVGTemRecentDay2" resultType="java.lang.Double">
+        SELECT ROUND(AVG(Temperature), 4)
+        FROM TemHum_data
+        WHERE Sensor = 'temHumSensor_2'
+        AND timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 1 DAY)
+        AND timestamp &lt; UNIX_TIMESTAMP(CURDATE());
+    </select>
+
+    <select id="selectAVGHumRecentDay2" resultType="java.lang.Double">
+        SELECT ROUND(AVG(Humidity), 4)
+        FROM TemHum_data
+        WHERE Sensor = 'temHumSensor_2'
+          AND timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 1 DAY)
+          AND timestamp &lt; UNIX_TIMESTAMP(CURDATE());
+    </select>
+
+    <select id="selectDayMaxTemRecentWeek" resultType="java.util.Map">
+        SELECT DATE(FROM_UNIXTIME(timestamp)) AS Date,
+        MAX(Temperature) AS MaxTemperature
+        FROM TemHum_data
+        WHERE Sensor = 'temHumSensor_1'
+        AND timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 7 DAY)
+        AND timestamp &lt; UNIX_TIMESTAMP(CURDATE())
+        GROUP BY DATE(FROM_UNIXTIME(timestamp))
+        ORDER BY Date;
+    </select>
+    <select id="selectDayAvgTemRecentWeek" resultType="java.util.Map">
+        SELECT
+        DATE( FROM_UNIXTIME( TIMESTAMP ) ) AS Date,
+        ROUND(AVG(Temperature), 2) AS AVGTemperature
+        FROM
+        TemHum_data
+        WHERE
+        Sensor = 'temHumSensor_1'
+        AND TIMESTAMP >= UNIX_TIMESTAMP( CURDATE( ) - INTERVAL 7 DAY )
+        AND TIMESTAMP &lt; UNIX_TIMESTAMP( CURDATE( ) )
+        GROUP BY
+        DATE( FROM_UNIXTIME( TIMESTAMP ) )
+        ORDER BY
+        Date;
+    </select>
+
+
+</mapper>

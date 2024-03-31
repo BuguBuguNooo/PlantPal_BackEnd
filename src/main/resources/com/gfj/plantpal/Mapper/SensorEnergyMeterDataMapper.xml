@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gfj.plantpal.Mapper.SensorEnergyMeterDataMapper">
+    <insert id="batchInsert">
+        INSERT INTO EnergyMeter_data (timestamp, Device, Sensor, ActiveTotalElectricalEnergy, Voltage, Current, ActivePower, ReactivePower, frequency)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.timestamp}, #{item.device}, #{item.sensor}, #{item.activeTotalElectricalEnergy}, #{item.voltage}, #{item.current}, #{item.activePower}, #{item.reactivePower}, #{item.frequency})
+        </foreach>
+    </insert>
+</mapper>

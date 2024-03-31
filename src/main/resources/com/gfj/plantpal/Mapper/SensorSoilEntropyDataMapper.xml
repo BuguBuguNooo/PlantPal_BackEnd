@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gfj.plantpal.Mapper.SensorSoilEntropyDataMapper">
+    <insert id="batchInsert">
+        INSERT INTO SoilEntropy_data (timestamp, Device, Sensor, Conductivity, PH, N, P, K)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.timestamp}, #{item.device}, #{item.sensor}, #{item.conductivity}, #{item.ph}, #{item.n}, #{item.p}, #{item.k})
+        </foreach>
+    </insert>
+
+    <select id="selectAVGConductivityRecentDay" resultType="java.lang.Double">
+        SELECT AVG(Conductivity)
+        FROM SoilEntropy_data
+        WHERE timestamp >= UNIX_TIMESTAMP(CURDATE() - INTERVAL 1 DAY)
+        AND timestamp &lt; UNIX_TIMESTAMP(CURDATE());
+    </select>
+</mapper>

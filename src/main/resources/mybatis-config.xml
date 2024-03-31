@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <!-- 获取数据库自增主键值 -->
+        <!-- 这个设置允许MyBatis使用JDBC的getGeneratedKeys方法来取回数据库自动生成的主键（比如：像MySQL和SQL Server这样的关系数据库管理系统的自动递增字段），默认值：false -->
+        <setting name="useGeneratedKeys" value="true"/>
+
+        <!-- 使用列标签替换列别名 默认:true -->
+        <!-- 这个设置是为了兼容不同的驱动，在选择为true时，如果数据库支持列别名，那么就使用列别名。如果false，那么使用列名 -->
+        <setting name="useColumnLabel" value="true"/>
+
+        <!-- 开启驼峰命名转换 Table{create_time}->>Entity{createTime} -->
+        <!-- 这个设置是为了将数据库表中的列名转换为Java的驼峰式命名。例如，数据库表中的列名为"create_time"，那么它将被转换为Java的驼峰式命名"createTime" -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!-- 设置MyBatis应该使用哪个日志实现 -->
+        <!-- 这个设置定义了MyBatis应该如何进行日志记录。这个值为"STDOUT_LOGGING"表示MyBatis将使用标准输出流（即控制台）进行日志记录 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+</configuration>
