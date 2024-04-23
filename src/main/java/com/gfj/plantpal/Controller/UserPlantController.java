@@ -65,4 +65,18 @@ public class UserPlantController {
         }
         return Result.success(userPlantService.selectUserPlantList(userId));
     }
+
+    //更新植物图片
+    @PutMapping("/updateImage")
+    private Result updateUserPlantImage(@RequestParam String plantId, @RequestParam String imageUrl) {
+        if (plantId == null || imageUrl == null) {
+            throw new IllegalArgumentException("plantId and imageUrl must not be null");
+        }
+        int i = userPlantService.UpdateUserPlantPic(imageUrl, plantId);
+        if (i > 0) {
+            return Result.success("更新植物图片成功！");
+        } else {
+            return Result.error("更新植物图片失败！");
+        }
+    }
 }

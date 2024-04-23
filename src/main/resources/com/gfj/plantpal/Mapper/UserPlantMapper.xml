@@ -74,4 +74,9 @@
         </set>
         WHERE user_id = #{userId} AND plant_id = #{userPlant.plantId}
     </update>
+    <update id="UpdateUserPlantPic">
+        update UserPlants
+        set plant_pic = #{plantPic}
+        WHERE plant_id = #{plantId}
+    </update>
 </mapper>

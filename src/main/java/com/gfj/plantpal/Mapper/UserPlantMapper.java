@@ -22,4 +22,6 @@ public interface UserPlantMapper {
     int UpdateUserPlant(@Param("userPlant") UserPlant userPlant, @Param("userId") Integer userId);
     //查询用户植物列表
     List<UserPlant> SelectUserPlantList(Integer userId);
+    //更新植物图片
+    int UpdateUserPlantPic(String plantPic, String plantId);
 }

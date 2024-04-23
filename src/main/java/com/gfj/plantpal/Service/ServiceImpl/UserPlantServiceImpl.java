@@ -16,8 +16,12 @@ import java.util.Map;
 @Service
 public class UserPlantServiceImpl implements UserPlantService {
 
-    @Autowired
-    private UserPlantMapper userPlantMapper;
+    private final UserPlantMapper userPlantMapper;
+
+    public UserPlantServiceImpl(UserPlantMapper userPlantMapper) {
+        this.userPlantMapper = userPlantMapper;
+    }
+
     @Override
     public int insertUserPlant(UserPlant userPlant) {
         //获取用户id
@@ -54,6 +58,11 @@ public class UserPlantServiceImpl implements UserPlantService {
     @Override
     public List<UserPlant> selectUserPlantList(Integer userId) {
         return userPlantMapper.SelectUserPlantList(userId);
+    }
+
+    @Override
+    public int UpdateUserPlantPic(String plantPic, String plantId) {
+        return userPlantMapper.UpdateUserPlantPic(plantPic, plantId);
     }
 
 }

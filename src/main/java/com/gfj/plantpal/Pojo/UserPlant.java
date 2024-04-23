@@ -21,6 +21,8 @@ public class UserPlant {
     private String plantName;
     //用户的植物序号
     private Integer plantSqId;
+    //植物图片
+    private String plantPic;
     //植物最低适宜温度
     private BigDecimal optimalTempLow;
     //植物最高适宜温度

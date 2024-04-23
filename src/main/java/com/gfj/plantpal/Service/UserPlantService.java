@@ -16,4 +16,6 @@ public interface UserPlantService {
     int updateUserPlant(UserPlant userPlant);
     //查询用户植物列表
     List<UserPlant> selectUserPlantList(Integer userId);
+    //更新植物图片
+    int UpdateUserPlantPic(String plantPic, String plantId);
 }
