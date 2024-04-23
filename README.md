@@ -31,30 +31,30 @@ PlantPal 是一个使用 Spring Boot 构建的后端服务，专为植物爱好�
 4. 运行应用: ./mvnw spring-boot:run
 
 ## 结构说明
-PlantPal/
-├── src/
-│ ├── main/
-│ │ ├── java/
-│ │ │ └── com.gfj.plantpal/
-│ │ │ ├── PlantPalApplication.java
-│ │ │ ├── Controller/
-│ │ │ ├── Service/
-│ │ │ ├── Mapper/
-│ │ │ ├── Config/
-│ │ │ ├── Pojo/
-│ │ │ ├── Interceptor/
-│ │ │ ├── WebSocketServer/
-│ │ │ ├── Util/
-│ │ │ └── ServiceUtil/
-│ │ └── resources/
-│ │ ├── static/
-│ │ ├── templates/
-│ │ ├── application.properties
-│ │ └── mybatis-config.xml
-│ └── test/
-├── pom.xml
-├── README.md
-└── HELP.md
+## PlantPal/
+- **src/**
+  - **main/**
+    - **java/**
+      - **com.gfj.plantpal/**
+        - `PlantPalApplication.java`
+        - **Controller/**
+        - **Service/**
+        - **Mapper/**
+        - **Config/**
+        - **Pojo/**
+        - **Interceptor/**
+        - **WebSocketServer/**
+        - **Util/**
+        - **ServiceUtil/**
+    - **resources/**
+    - **static/**
+    - **templates/**
+    - `application.properties`
+    - `mybatis-config.xml`
+  - **test/**
+- `pom.xml`
+- `README.md`
+- `HELP.md`
 
 ## 贡献指南
 
